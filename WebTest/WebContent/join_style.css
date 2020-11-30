@@ -8,15 +8,15 @@
 table{
     margin-left:auto; 
     margin-right:auto;
-    border:3px solid skyblue
+    border:3px solid gray
 }
         
 td{
-    border:1px solid skyblue
+    border:1px solid gray
 }
         
 #title{
-    background-color:skyblue
+    background-color:gray
 }
 
 
