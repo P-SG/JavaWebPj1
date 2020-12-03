@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
 <%@ page import="java.sql.*"%>
-<%@ page import="test.DBConnection"%> <!-- DB연결 클래스를 import한다. -->
+<%@ page import="DBtest.DBConnection"%> <!-- DB연결 클래스를 import한다. -->
 <html>
  
 <head>

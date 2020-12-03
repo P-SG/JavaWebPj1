@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("/input")
+@WebServlet("/input1")
 public class input extends HttpServlet {
            
 	public void init() throws ServletException {
