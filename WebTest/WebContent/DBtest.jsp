@@ -8,8 +8,8 @@
 </head>
 <body>
     <center>
-        <table border="3" bordercolor="skyblue">
-        <tr bgcolor="skyblue"><td>이름<td>직업</tr>
+        <table border="3" bordercolor="gray">
+        <tr bgcolor="gray"><td>이름<td>직업</tr>
         
         <%
         // 쿼리문
