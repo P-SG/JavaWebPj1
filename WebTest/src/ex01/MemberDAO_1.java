@@ -1,4 +1,4 @@
-package jsp.member.model;
+package ex01;
  
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -6,6 +6,7 @@ import java.sql.SQLException;
 import java.sql.Date;
 import javax.naming.NamingException;
 
+import jsp.member.model.MemberBean;
 import jsp.util.DBConnection;
  
  
@@ -15,15 +16,15 @@ import jsp.util.DBConnection;
  * JSP_MEMBER 테이블과 연관된 DAO로
  * 회원 데이터를 처리하는 클래스이다.
  */
-public class MemberDAO1 
+public class MemberDAO_1 
 {
-    private static MemberDAO1 instance;
+    private static MemberDAO_1 instance;
     
     // 싱글톤 패턴
-    private MemberDAO1(){}
-    public static MemberDAO1 getInstance(){
+    private MemberDAO_1(){}
+    public static MemberDAO_1 getInstance(){
         if(instance==null)
-            instance=new MemberDAO1();
+            instance=new MemberDAO_1();
         return instance;
     }
     

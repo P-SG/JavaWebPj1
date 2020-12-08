@@ -26,17 +26,17 @@
     <!--
     <Manager pathname="" />
     -->
-<Resource auth="Container" 
-          name="jdbc/orcl" 
+<Resource auth="Container"
+          name="jdbc/oracle" 
           driverClassName="oracle.jdbc.driver.OracleDriver" 
           type="javax.sql.DataSource" 
-          url="jdbc:oracle:thin:@localhost:1521:orcl" 
+          url="jdbc:oracle:thin:@localhost:1521:myoracle" 
           username="scott"
-          password="tiger" 
-          loginTimeout="10" 
-          maxActive="50" 
-          maxIdle="20"
-          maxWait="5000" 
+          password="tiger"  
+          maxActive="50"        
+          maxWait="1"
+          logintimeout="10" 
           testOnBorrow="true" />
           <ResourceLink global="jdbc/orcl" name="jdbc/orcl" type="javax.sql.DataSource"/>
+          
 </Context>

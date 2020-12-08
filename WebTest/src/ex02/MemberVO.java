@@ -1,4 +1,4 @@
-package jsp.member.model;
+package ex02;
 
 import java.sql.Date;
 

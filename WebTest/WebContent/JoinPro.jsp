@@ -4,7 +4,7 @@
 <%-- 자바빈 클래스 import --%>      
 <%@ page import="jsp.member.model.MemberBean" %>  
 <%-- DAO import --%>   
-<%@ page import="jsp.member.model.MemberDAO1" %> 
+<%@ page import="ex01.MemberDAO_1" %> 
  
 <html>
 <head>
@@ -18,7 +18,7 @@
     <%-- JoinForm.jsp에서 입력한 정보를 넘겨 받아 처리한다. --%>
     <%
     	// 한글 깨짐을 방지하기 위한 인코딩 처리
-            request.setCharacterEncoding("euc-kr");
+                    request.setCharacterEncoding("euc-kr");
     %>
     
     <%-- 자바빈 관련 액션태그 사용 --%>
@@ -26,11 +26,11 @@
     <jsp:setProperty property="*" name="memberBean"/>    
     
     <%
-            	MemberDAO1 dao = MemberDAO1.getInstance();
-                
-                    // 회원정보를 담고있는 memberBean을 dao의 insertMember() 메서드로 넘긴다.
-                    // insertMember()는 회원 정보를 JSP_MEMBER 테이블에 저장한다.
-                    dao.insertMember(memberBean);
+            	MemberDAO_1 dao = MemberDAO_1.getInstance();
+                                        
+                                            // 회원정보를 담고있는 memberBean을 dao의 insertMember() 메서드로 넘긴다.
+                                            // insertMember()는 회원 정보를 JSP_MEMBER 테이블에 저장한다.
+                                            dao.insertMember(memberBean);
             %>
     
     <div id="wrap">
