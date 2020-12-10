@@ -91,7 +91,7 @@ public class MemberDAO3 {
    
    public void delMember(String id) { //멤버를 삭제하는 함수
 	   try {
-           con = dataFactory.getConnection();            
+           Connection con = dataFactory.getConnection();            
            String query = "delete from t_member" + " where id=?"; // 쿼리문 작성
            System.out.println("prepareStatement=" + query); 
            pstmt = con.prepareStatement(query); //prepareStatement()에 SQL문을 전달해 PrepareStatement 객체를 생성한다.
