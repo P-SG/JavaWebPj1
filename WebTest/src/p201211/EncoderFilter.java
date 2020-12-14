@@ -12,7 +12,7 @@ import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 
-@WebFilter("/*") 
+//@WebFilter("/*") 
 //필터를 지정하여 매핑뒤에 필터를 붙이면 인코딩이나 서비스 시간을 측정할 수 있다
 public class EncoderFilter implements Filter {
 	ServletContext context;

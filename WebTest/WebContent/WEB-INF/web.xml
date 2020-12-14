@@ -5,7 +5,25 @@
          xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" 
          id="WebApp_ID" version="2.5">
  <display-name>JSP_create</display-name>
+ <welcome-file-list>
+ <welcome-file>main0.jsp</welcome-file>
+ <welcome-file>add.jsp</welcome-file>
+ <welcome-file>add.html</welcome-file>
+ <!-- <welcome-file-list>
+ 태그는 사용자가 웹 어플리케이션의 루트컨텍스트경로
+ 즉 서버의 루트 주소만을 입력하여 접근했을 경우 가장 처음에 띄워줄 경로를 설정하는 태그
+ 서버는 <welcome-file> </welcome-file>
+ 차례로 읽어가며 해당 자원이 존재하는 경우 그 자원을 사용자에게 돌려주게 됩니다. -->
+ </welcome-file-list>
  
+ <error-page>
+ 	<error-code>404</error-code>
+ 	<location>/err/error_404.jsp</location>
+ </error-page>
+ <error-page>
+ 	<error-code>500</error-code>
+ 	<location>/err/error_500.jsp</location>
+ </error-page>  
 <resource-ref>
      <description>connection</description>
      <res-ref-name>jdbc/orcl</res-ref-name>
