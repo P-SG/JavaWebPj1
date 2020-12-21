@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script  src="http://code.jquery.com/jquery-latest.min.js"></script>
+  <script type="text/javascript">
+      function fn_process(){
+       	var _id=$("#t_id").val();
+       	if(_id==''){
+       		alert("ID를 입력하세요");
+       		return;	
+       	}
+       	$.ajax({
+       		type:"post",
+       		async:false,
+       		url:"http://localhost:8080/WebTest/mem4",
+       		dataType:"text",
+       		data: {id:_id},
+       		success:function (data,textStatus){
+       			if(data=='usable'){
+       				$('#message').text("사용할 수 있는 ID입니다.");
+       				$('#btnDuplicate').prop("disabled",true);
+       			}else{
+       				$('#message').text("사용할 수 없는 ID입니다.");
+       			}
+       		},
+       		error:function(data,textStatus){
+       			alert("에러가 발생했습니다.");
+       		},
+       		complete:function(data,textStatus){
+       			//alert("작업을 완료 했습니다.");
+       		}
+       	}); //end ajax
+       	}  	
+      </script>
+</head>
+<body>
+<input type="text" id="t_id"/>
+<input type=button id="btn_duplicate" value="ID 중복체크하기" onclick="fn_process()">
+<div id="message"></div>
+</body>
+</html>
+<!-- Ajax란 
++ XML의 의미로 자바스크립트를 사용한 비동기 통신,
+즉 클라이언트와 서버 간의 XML이나 JSON 데이터를 주고받는 기술
+제이쿼리 Ajax 사용 형식 --------------------------
+$.ajax({
+	type: "post 또느 get",
+	async: "true 또는 false",
+	url: "요청할 URL",
+	data: {서버로 전송할 데이터},
+	dataType: "서버에서 전송받을 데이터형식",
+	success:{
+		//정상 요청, 응답 시 처리
+	},
+	error: function(xhr,status,error){
+		//오류 발생시 처리
+	},
+	complete: function(data,textStatus){
+		//작업 완료 후 처리
+		}
+	});
+ -->
