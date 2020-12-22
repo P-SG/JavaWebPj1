@@ -11,6 +11,7 @@
      $(function() {
          $("#checkJson").click(function() {
 	        var jsonStr = '{"name":"박지성","age":25,"gender":"남자","nickname":"날센돌이"}';
+	        // key: name,age,gender,nickname value: 박지성,25,남자,날쌘돌이
 	        var jsonObj = JSON.parse(jsonStr);
 	      	var output ="회원 정보<br>";
 	      	output += "=======<br>";

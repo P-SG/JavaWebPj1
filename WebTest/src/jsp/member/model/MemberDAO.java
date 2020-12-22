@@ -14,7 +14,7 @@ import ex02.MemberVO;
 public class MemberDAO {
 	
 	private static final String driver = "oracle.jdbc.driver.OracleDriver";
-	private static final String url = "jdbc:oracle:thin:@localhost:1521:XE";
+	private static final String url = "jdbc:oracle:thin:@localhost:1521:orcl";
 	private static final String user = "scott";
 	private static final String pwd = "tiger";
 	

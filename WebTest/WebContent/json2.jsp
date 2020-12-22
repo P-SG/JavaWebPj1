@@ -11,6 +11,7 @@
       $(function() {
           $("#checkJson").click(function() {
              var jsonStr = '{"age": [22, 33, 44]}';  
+             //key:age value:22,33,44
              var jsonInfo = JSON.parse(jsonStr);
              var output ="회원 나이<br>";
              output += "=======<br>";

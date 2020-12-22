@@ -13,6 +13,7 @@ $(function() {
 	    var jsonStr = '{"members":[{"name":"박지성","age":"25","gender":"남자","nickname":"날센돌이"}'
 	    	           +', {"name":"손흥민","age":"30","gender":"남자","nickname":"탱크"}] }';
 	    var jsonInfo = JSON.parse(jsonStr);
+	    // jsonStr의 정보를 파싱해 jsonInfo에 넣는다
 	    var output ="회원 정보<br>";
 	    output += "=======<br>";
 	    for(var i in jsonInfo.members){

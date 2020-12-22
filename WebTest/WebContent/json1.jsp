@@ -10,12 +10,14 @@
 <script>
     $(function() {
         $("#checkJson").click(function() {
-        var jsonStr  = '{"name": ["홍길동", "이순신", "임꺽정"] }';          
+        var jsonStr  = '{"name": ["홍길동", "이순신", "임꺽정"] }';
+        // key:name value:"홍길동", "이순신", "임꺽정"
         var jsonInfo = JSON.parse(jsonStr);
-        var output ="회원 이름<br>";
-        output += "=======<br>";
-        for(var i in jsonInfo.name) {
-            output += jsonInfo.name[i]+"<br>";
+        //  jsonStr의 문자열을 분석하고 자바스크립트 객체를 생성한다
+        var output ="회원 이름<br>"; // 문자 출력
+        output += "=======<br>"; // 
+        for(var i in jsonInfo.name) { // i에 jsonInfo의 name의 배열값을 반복
+            output += jsonInfo.name[i]+"<br>"; // jsonInfo의 name을 배열 출력
         }
         $("#output").html(output);
       });
