@@ -1,4 +1,5 @@
-package p201222_2;
+package p201223;
+
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -8,6 +9,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.RequestDispatcher;
+import javax.servlet.Servlet;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -21,70 +23,63 @@ import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import org.apache.commons.io.FileUtils;
 
 //@WebServlet("/board/*")
-public class BoardController2 extends HttpServlet {
+public class BoardController extends HttpServlet {
 	private static String ARTICLE_IMAGE_REPO = "C:\\board\\article_image";
-	BoardService2 boardService;
-	ArticleVO2 articleVO;
-	
-	public void init(ServletConfig config) throws ServletException{
-		boardService = new BoardService2();
-		articleVO = new ArticleVO2();
+	BoardService boardService;
+	ArticleVO articleVO;
+
+	public void init(ServletConfig config) throws ServletException {
+		boardService = new BoardService();
+		articleVO = new ArticleVO();
 	}
-	
-	public void doGet(HttpServletRequest request, HttpServletResponse response) 
-			throws ServletException, IOException{
+
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doHandle(request, response);
 	}
-	public void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException{
+
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)	throws ServletException, IOException {
 		doHandle(request, response);
 	}
-	
-	public void doHandle(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException{
-		String nextPage ="";
+
+	private void doHandle(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String nextPage = ""; // 다음 페이지를 받을 변수
 		request.setCharacterEncoding("utf-8");
-		response.setContentType("text/html;charset=utf-8");
-		String action = request.getPathInfo();
+		response.setContentType("text/html; charset=utf-8");
+		String action = request.getPathInfo(); //리퀘스트의 경로정보를 받는 변수
 		System.out.println("action:" + action);
-		
 		try {
-			List<ArticleVO2> articlesList = new ArrayList<ArticleVO2>();
-			if(action == null) {
-				articlesList = boardService.listArticles();
+			List<ArticleVO> articlesList = new ArrayList<ArticleVO>(); //아티클VO를 리스트로 생성
+			if (action == null) {
+				articlesList = boardService.listArticles(); 
 				request.setAttribute("articlesList", articlesList);
-				nextPage = "/board02/listArticles.jsp";
+				nextPage = "/board03/listArticles.jsp";
 			} else if (action.equals("/listArticles.do")) {
 				articlesList = boardService.listArticles();
-				request.setAttribute("articlesList",  articlesList);
-				nextPage = "/board02/listArticles.jsp";
-			} else if(action.equals("/articleForm.do")) {
-				nextPage ="/board02/articleForm.jsp";
-			} else if(action.equals("/addArticle.do")) {
+				request.setAttribute("articlesList", articlesList);
+				nextPage = "/board03/listArticles.jsp";
+			} else if (action.equals("/articleForm.do")) {
+				nextPage = "/board03/articleForm.jsp";
+			} else if (action.equals("/addArticle.do")) {
 				int articleNO=0;
 				Map<String, String> articleMap = upload(request, response);
-				String title = articleMap.get("title"); //아티클맵의 타이틀값을 받아온다
-				String content = articleMap.get("content"); //아티클맵의 컨텐츠값을 받아온다
-				String imageFileName = articleMap.get("imageFileName"); //아티클맵의 이미지파일네임 값을 받아온다
+				String title = articleMap.get("title");
+				String content = articleMap.get("content");
+				String imageFileName = articleMap.get("imageFileName");
+				
 				articleVO.setParentNO(0);
-				articleVO.setId("park");
+				articleVO.setId("hong");
 				articleVO.setTitle(title);
 				articleVO.setContent(content);
 				articleVO.setImageFileName(imageFileName);
-				// 테이블에 새 글을 추가한 후 새 글에 대한 글 번호를 가져온다
 				articleNO= boardService.addArticle(articleVO);
-				
-				// 파일을 첨부한 경우에만 수행한다
-				if(imageFileName !=null && imageFileName.length() !=0) {
-					//temp 폴더에 임시로 업로드 된 파일 객체를 생성한다
-					File srcFile = new File(ARTICLE_IMAGE_REPO +"\\"+"temp"+"\\"+imageFileName);
-					//CURR_IMAGE_REPO_PATH의 경로 하위에 글 번호로 폴더를 생성한다
-					File destDir = new File(ARTICLE_IMAGE_REPO +"\\"+articleNO);
-					destDir.mkdirs();
-					//temp 폴더의 파일을 글 번호를 이름으로 하는 폴더로 이동시킨다
-					FileUtils.moveFileToDirectory(srcFile, destDir, true);
+				if(imageFileName!=null && imageFileName.length()!=0) {
+				    File srcFile = new File(ARTICLE_IMAGE_REPO +"\\"+"temp"+"\\"+imageFileName); // srcFile 객체를 생성
+					File destDir = new File(ARTICLE_IMAGE_REPO +"\\"+articleNO); // destDir 객체를 생성
+					destDir.mkdirs(); // destDir의 디렉터리를 생성
+					FileUtils.moveFileToDirectory(srcFile, destDir, true); 
+					// moveFileToDirectory(src, des, createDestDir);
+					srcFile.delete();  //srcFile을 삭제
 				}
-				//새 글 등록 메시지를 나타내고 자바스크립트 location 객체의 href 속성을 이용해 글 목록을 요청한다
 				PrintWriter pw = response.getWriter();
 				pw.print("<script>" 
 				         +"  alert('새글을 추가했습니다.');" 
@@ -92,14 +87,23 @@ public class BoardController2 extends HttpServlet {
 				         +"</script>");
 
 				return;
+			}else if(action.equals("/viewArticle.do")){
+				String articleNO = request.getParameter("articleNO");
+				articleVO=boardService.viewArticle(Integer.parseInt(articleNO)); //viewArticle의 articleNO를 정수형으로 변환한다
+				request.setAttribute("article",articleVO);
+				nextPage = "/board03/viewArticle.jsp"; 
+				//viewArticle.jsp를 다음페이지로 넘길 변수에 넣는다
 			}
 
-			RequestDispatcher dispatch = request.getRequestDispatcher(nextPage); //디스패쳐로 다음페이지로 리퀘스트값을 넘긴다
-			dispatch.forward(request, response);  
+
+			RequestDispatcher dispatch = request.getRequestDispatcher(nextPage);
+			//디스페쳐로 정보를 다음페이지로 넘겨준다
+			dispatch.forward(request, response); 
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
+
 	private Map<String, String> upload(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Map<String, String> articleMap = new HashMap<String, String>();
 		String encoding = "utf-8";
@@ -117,16 +121,13 @@ public class BoardController2 extends HttpServlet {
 					articleMap.put(fileItem.getFieldName(), fileItem.getString(encoding));
 				} else {
 					System.out.println("파라미터명:" + fileItem.getFieldName());
-					//System.out.println("파일명:" + fileItem.getName());
 					System.out.println("파일크기:" + fileItem.getSize() + "bytes");
-					//articleMap.put(fileItem.getFieldName(), fileItem.getName());
 					if (fileItem.getSize() > 0) {
 						int idx = fileItem.getName().lastIndexOf("\\");
 						if (idx == -1) {
 							idx = fileItem.getName().lastIndexOf("/");
 						}
 
-						// 첨부한 파일을 먼저 temp 폴더에 업로드 한다
 						String fileName = fileItem.getName().substring(idx + 1);
 						System.out.println("파일명:" + fileName);
 						articleMap.put(fileItem.getFieldName(), fileName);  //익스플로러에서 업로드 파일의 경로 제거 후 map에 파일명 저장
@@ -141,5 +142,5 @@ public class BoardController2 extends HttpServlet {
 		}
 		return articleMap;
 	}
-	
+
 }
