@@ -4,7 +4,7 @@ import javax.servlet.annotation.WebListener;
 import javax.servlet.http.HttpSessionEvent;
 import javax.servlet.http.HttpSessionListener;
 
-@WebListener
+//@WebListener
 public class LoginImpl2 implements HttpSessionListener {
 	String user_id;
 	String user_pw;

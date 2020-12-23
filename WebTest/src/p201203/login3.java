@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("/login3")
+//@WebServlet("/login3")
 public class login3 extends HttpServlet {
 	public void init() throws ServletException {
 		System.out.println("init 메서드 호출");

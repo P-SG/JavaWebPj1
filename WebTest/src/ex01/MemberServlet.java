@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import ex02.MemberVO;
 
-@WebServlet("/member")
+//@WebServlet("/member")
 public class MemberServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request,HttpServletResponse response)
                                                     throws ServletException, IOException {

@@ -11,7 +11,7 @@ import java.util.Date;
 
 import javax.servlet.http.HttpSession;
 
-@WebServlet("/sess3")
+//@WebServlet("/sess3")
 public class SessionTest3 extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        

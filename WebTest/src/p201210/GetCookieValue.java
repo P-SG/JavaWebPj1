@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Servlet implementation class GetCookieValue
  */
-@WebServlet("/getcookie")
+//@WebServlet("/getcookie")
 public class GetCookieValue extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        

@@ -15,7 +15,7 @@ import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 
 
-@WebServlet("/upload.do")
+//@WebServlet("/upload.do")
 public class FileUpload extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	

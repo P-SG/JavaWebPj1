@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("*.do") //.do형식으로 매핑
+//@WebServlet("*.do") //.do형식으로 매핑
 public class TestServlet3 extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
