@@ -24,13 +24,13 @@ import org.apache.commons.io.FileUtils;
 
 //@WebServlet("/board/*")
 public class BoardController extends HttpServlet {
-	private static String ARTICLE_IMAGE_REPO = "C:\\board\\article_image";
+	private static String ARTICLE_IMAGE_REPO = "C:\\board\\article_image"; // 폴더 경로를 저장하는 변수
 	BoardService boardService;
 	ArticleVO articleVO;
 
 	public void init(ServletConfig config) throws ServletException {
 		boardService = new BoardService();
-		articleVO = new ArticleVO();
+		articleVO = new ArticleVO(); 
 	}
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

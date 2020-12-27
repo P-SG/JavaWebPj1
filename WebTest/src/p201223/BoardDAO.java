@@ -34,6 +34,8 @@ public class BoardDAO {
 			conn = dataFactory.getConnection();
 			String query = "SELECT LEVEL,articleNO,parentNO,title,content,id,writeDate" + " from t_board"
 					+ " START WITH  parentNO=0" + " CONNECT BY PRIOR articleNO=parentNO"
+					// CONNECT BY PRIOR 자식컬럼 = 부모컬럼 : 부모에서 자식으로 트리구성
+					// CONNECT BY PRIOR 부모컬럼 = 자식컬럼 : 자식에서 부모로 트리 구성 
 					+ " ORDER SIBLINGS BY articleNO DESC";
 			System.out.println(query);
 			pstmt = conn.prepareStatement(query);
@@ -68,12 +70,12 @@ public class BoardDAO {
 	private int getNewArticleNO() {
 		try {
 			conn = dataFactory.getConnection();
-			String query = "SELECT  max(articleNO) from t_board ";
+			String query = "SELECT  max(articleNO) from t_board "; //articleNO의 가장 높은 값을 가져오는 쿼리문
 			System.out.println(query);
 			pstmt = conn.prepareStatement(query);
 			ResultSet rs = pstmt.executeQuery(query);
-			if (rs.next())
-				return (rs.getInt(1) + 1);
+			if (rs.next()) //결과가 존재하면
+				return (rs.getInt(1) + 1); //첫번째 결과 값에 1을 더해서 리턴
 			rs.close();
 			pstmt.close();
 			conn.close();
@@ -118,7 +120,7 @@ public class BoardDAO {
 		conn = dataFactory.getConnection();
 		String query ="select articleNO,parentNO,title,content, imageFileName,id,writeDate"
 			                     +" from t_board" 
-			                     +" where articleNO=?";
+			                     +" where articleNO=?"; //글 번호에 따라
 		System.out.println(query);
 		pstmt = conn.prepareStatement(query);
 		pstmt.setInt(1, articleNO);
