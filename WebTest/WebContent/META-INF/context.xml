@@ -27,10 +27,10 @@
     <Manager pathname="" />
     -->
 <Resource auth="Container"
-          name="jdbc/oracle" 
+          name="jdbc/orcl" 
           driverClassName="oracle.jdbc.driver.OracleDriver" 
           type="javax.sql.DataSource" 
-          url="jdbc:oracle:thin:@localhost:1521:myoracle" 
+          url="jdbc:oracle:thin:@localhost:1521:orcl" 
           username="scott"
           password="tiger"  
           maxActive="50"        

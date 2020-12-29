@@ -11,10 +11,10 @@
   <script>
     $(function() {
         $("#checkJson").click(function() {
-    	$.ajax({ // ajax 방식
-            type:"post", // 전송방식
-            async:false,  // 비동기
-            url:"${contextPath}/json2", // 전송할 url - contextPath/어노테이션명
+    	$.ajax({
+            type:"post",
+            async:false, 
+            url:"${contextPath}/json2",
             success:function (data,textStatus){
             	var jsonInfo = JSON.parse(data);
             	var memberInfo ="회원 정보<br>";
